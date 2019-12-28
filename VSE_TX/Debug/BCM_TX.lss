@@ -1,0 +1,1701 @@
+
+BCM_TX.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000009b8  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000002a  00800060  000009b8  00000a4c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          0000002d  0080008a  0080008a  00000a76  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000a76  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000aa8  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000001f0  00000000  00000000  00000ae4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000019ae  00000000  00000000  00000cd4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000cc3  00000000  00000000  00002682  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00001544  00000000  00000000  00003345  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000003f8  00000000  00000000  0000488c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000009fe  00000000  00000000  00004c84  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00001336  00000000  00000000  00005682  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000150  00000000  00000000  000069b8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 00 02 	jmp	0x400	; 0x400 <__vector_10>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 9d 03 	jmp	0x73a	; 0x73a <__vector_12>
+  34:	0c 94 88 04 	jmp	0x910	; 0x910 <__vector_13>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 b1 04 	jmp	0x962	; 0x962 <__vector_15>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e8 eb       	ldi	r30, 0xB8	; 184
+  68:	f9 e0       	ldi	r31, 0x09	; 9
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	aa 38       	cpi	r26, 0x8A	; 138
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	aa e8       	ldi	r26, 0x8A	; 138
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a7 3b       	cpi	r26, 0xB7	; 183
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 af 03 	call	0x75e	; 0x75e <main>
+  8a:	0c 94 da 04 	jmp	0x9b4	; 0x9b4 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <g_BCM_TX_callback>:
+		default:		retval = ERROR_WRONG_STATE;			/* Error wrong	state */
+		break;
+
+	}
+	return retval;
+ }
+  92:	81 e0       	ldi	r24, 0x01	; 1
+  94:	80 93 62 00 	sts	0x0062, r24	; 0x800062 <u8_UART_TX_Flag>
+  98:	82 e0       	ldi	r24, 0x02	; 2
+  9a:	80 93 8c 00 	sts	0x008C, r24	; 0x80008c <gu8_BCM_State_Machine_TX>
+  9e:	08 95       	ret
+
+000000a0 <g_BCM_RX_callback>:
+  a0:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__data_start>
+  a4:	81 11       	cpse	r24, r1
+  a6:	38 c0       	rjmp	.+112    	; 0x118 <g_BCM_RX_callback+0x78>
+  a8:	10 92 8a 00 	sts	0x008A, r1	; 0x80008a <__data_end>
+  ac:	8a e8       	ldi	r24, 0x8A	; 138
+  ae:	90 e0       	ldi	r25, 0x00	; 0
+  b0:	0e 94 5c 04 	call	0x8b8	; 0x8b8 <UART_Start_RecieveByte>
+  b4:	80 91 8d 00 	lds	r24, 0x008D	; 0x80008d <gu8_BCM_RX_Index_Buffer_ISR>
+  b8:	90 91 8e 00 	lds	r25, 0x008E	; 0x80008e <gu8_BCM_RX_Index_Buffer_ISR+0x1>
+  bc:	a0 91 8f 00 	lds	r26, 0x008F	; 0x80008f <gu8_BCM_RX_Index_Buffer_ISR+0x2>
+  c0:	b0 91 90 00 	lds	r27, 0x0090	; 0x800090 <gu8_BCM_RX_Index_Buffer_ISR+0x3>
+  c4:	20 91 8a 00 	lds	r18, 0x008A	; 0x80008a <__data_end>
+  c8:	e1 eb       	ldi	r30, 0xB1	; 177
+  ca:	f0 e0       	ldi	r31, 0x00	; 0
+  cc:	43 81       	ldd	r20, Z+3	; 0x03
+  ce:	54 81       	ldd	r21, Z+4	; 0x04
+  d0:	da 01       	movw	r26, r20
+  d2:	a8 0f       	add	r26, r24
+  d4:	b9 1f       	adc	r27, r25
+  d6:	2c 93       	st	X, r18
+  d8:	03 80       	ldd	r0, Z+3	; 0x03
+  da:	f4 81       	ldd	r31, Z+4	; 0x04
+  dc:	e0 2d       	mov	r30, r0
+  de:	80 81       	ld	r24, Z
+  e0:	83 30       	cpi	r24, 0x03	; 3
+  e2:	21 f0       	breq	.+8      	; 0xec <g_BCM_RX_callback+0x4c>
+  e4:	88 ef       	ldi	r24, 0xF8	; 248
+  e6:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__data_start>
+  ea:	08 95       	ret
+  ec:	80 91 8d 00 	lds	r24, 0x008D	; 0x80008d <gu8_BCM_RX_Index_Buffer_ISR>
+  f0:	90 91 8e 00 	lds	r25, 0x008E	; 0x80008e <gu8_BCM_RX_Index_Buffer_ISR+0x1>
+  f4:	a0 91 8f 00 	lds	r26, 0x008F	; 0x80008f <gu8_BCM_RX_Index_Buffer_ISR+0x2>
+  f8:	b0 91 90 00 	lds	r27, 0x0090	; 0x800090 <gu8_BCM_RX_Index_Buffer_ISR+0x3>
+  fc:	01 96       	adiw	r24, 0x01	; 1
+  fe:	a1 1d       	adc	r26, r1
+ 100:	b1 1d       	adc	r27, r1
+ 102:	80 93 8d 00 	sts	0x008D, r24	; 0x80008d <gu8_BCM_RX_Index_Buffer_ISR>
+ 106:	90 93 8e 00 	sts	0x008E, r25	; 0x80008e <gu8_BCM_RX_Index_Buffer_ISR+0x1>
+ 10a:	a0 93 8f 00 	sts	0x008F, r26	; 0x80008f <gu8_BCM_RX_Index_Buffer_ISR+0x2>
+ 10e:	b0 93 90 00 	sts	0x0090, r27	; 0x800090 <gu8_BCM_RX_Index_Buffer_ISR+0x3>
+ 112:	82 e0       	ldi	r24, 0x02	; 2
+ 114:	80 93 8b 00 	sts	0x008B, r24	; 0x80008b <gu8_BCM_State_Machine_RX>
+ 118:	08 95       	ret
+
+0000011a <BCM_Init>:
+ 11a:	81 30       	cpi	r24, 0x01	; 1
+ 11c:	19 f0       	breq	.+6      	; 0x124 <BCM_Init+0xa>
+ 11e:	82 30       	cpi	r24, 0x02	; 2
+ 120:	99 f1       	breq	.+102    	; 0x188 <BCM_Init+0x6e>
+ 122:	3a c0       	rjmp	.+116    	; 0x198 <BCM_Init+0x7e>
+ 124:	8b e6       	ldi	r24, 0x6B	; 107
+ 126:	90 e0       	ldi	r25, 0x00	; 0
+ 128:	0e 94 d3 03 	call	0x7a6	; 0x7a6 <UART_Init>
+ 12c:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <gu8_BCM_init>
+ 130:	81 11       	cpse	r24, r1
+ 132:	34 c0       	rjmp	.+104    	; 0x19c <BCM_Init+0x82>
+ 134:	89 e4       	ldi	r24, 0x49	; 73
+ 136:	90 e0       	ldi	r25, 0x00	; 0
+ 138:	0e 94 74 04 	call	0x8e8	; 0x8e8 <Set_Call_Back_UART_TX>
+ 13c:	80 e5       	ldi	r24, 0x50	; 80
+ 13e:	90 e0       	ldi	r25, 0x00	; 0
+ 140:	0e 94 7e 04 	call	0x8fc	; 0x8fc <Set_Call_Back_UART_RX>
+ 144:	10 92 9a 00 	sts	0x009A, r1	; 0x80009a <gu8_lock_TX_Buffer>
+ 148:	10 92 99 00 	sts	0x0099, r1	; 0x800099 <gu8_lock_RX_Buffer>
+ 14c:	10 92 8c 00 	sts	0x008C, r1	; 0x80008c <gu8_BCM_State_Machine_TX>
+ 150:	10 92 8b 00 	sts	0x008B, r1	; 0x80008b <gu8_BCM_State_Machine_RX>
+ 154:	10 92 95 00 	sts	0x0095, r1	; 0x800095 <gu8_BCM_Index_Buffer_TX_Dispat>
+ 158:	10 92 96 00 	sts	0x0096, r1	; 0x800096 <gu8_BCM_Index_Buffer_TX_Dispat+0x1>
+ 15c:	10 92 97 00 	sts	0x0097, r1	; 0x800097 <gu8_BCM_Index_Buffer_TX_Dispat+0x2>
+ 160:	10 92 98 00 	sts	0x0098, r1	; 0x800098 <gu8_BCM_Index_Buffer_TX_Dispat+0x3>
+ 164:	10 92 91 00 	sts	0x0091, r1	; 0x800091 <gu8_BCM_Index_Buffer_RX_Dispat>
+ 168:	10 92 92 00 	sts	0x0092, r1	; 0x800092 <gu8_BCM_Index_Buffer_RX_Dispat+0x1>
+ 16c:	10 92 93 00 	sts	0x0093, r1	; 0x800093 <gu8_BCM_Index_Buffer_RX_Dispat+0x2>
+ 170:	10 92 94 00 	sts	0x0094, r1	; 0x800094 <gu8_BCM_Index_Buffer_RX_Dispat+0x3>
+ 174:	10 92 8d 00 	sts	0x008D, r1	; 0x80008d <gu8_BCM_RX_Index_Buffer_ISR>
+ 178:	10 92 8e 00 	sts	0x008E, r1	; 0x80008e <gu8_BCM_RX_Index_Buffer_ISR+0x1>
+ 17c:	10 92 8f 00 	sts	0x008F, r1	; 0x80008f <gu8_BCM_RX_Index_Buffer_ISR+0x2>
+ 180:	10 92 90 00 	sts	0x0090, r1	; 0x800090 <gu8_BCM_RX_Index_Buffer_ISR+0x3>
+ 184:	80 e0       	ldi	r24, 0x00	; 0
+ 186:	08 95       	ret
+ 188:	84 e6       	ldi	r24, 0x64	; 100
+ 18a:	90 e0       	ldi	r25, 0x00	; 0
+ 18c:	0e 94 d3 02 	call	0x5a6	; 0x5a6 <SPI_Init>
+ 190:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <gu8_BCM_init>
+ 194:	80 e0       	ldi	r24, 0x00	; 0
+ 196:	08 95       	ret
+ 198:	8e ef       	ldi	r24, 0xFE	; 254
+ 19a:	08 95       	ret
+ 19c:	89 ef       	ldi	r24, 0xF9	; 249
+ 19e:	08 95       	ret
+
+000001a0 <BCM_Send>:
+ 1a0:	9c 01       	movw	r18, r24
+ 1a2:	90 91 61 00 	lds	r25, 0x0061	; 0x800061 <gu8_BCM_init>
+ 1a6:	91 11       	cpse	r25, r1
+ 1a8:	1b c0       	rjmp	.+54     	; 0x1e0 <BCM_Send+0x40>
+ 1aa:	80 91 8c 00 	lds	r24, 0x008C	; 0x80008c <gu8_BCM_State_Machine_TX>
+ 1ae:	81 11       	cpse	r24, r1
+ 1b0:	19 c0       	rjmp	.+50     	; 0x1e4 <BCM_Send+0x44>
+ 1b2:	61 15       	cp	r22, r1
+ 1b4:	71 05       	cpc	r23, r1
+ 1b6:	c1 f0       	breq	.+48     	; 0x1e8 <BCM_Send+0x48>
+ 1b8:	80 91 9a 00 	lds	r24, 0x009A	; 0x80009a <gu8_lock_TX_Buffer>
+ 1bc:	81 11       	cpse	r24, r1
+ 1be:	16 c0       	rjmp	.+44     	; 0x1ec <BCM_Send+0x4c>
+ 1c0:	eb ea       	ldi	r30, 0xAB	; 171
+ 1c2:	f0 e0       	ldi	r31, 0x00	; 0
+ 1c4:	83 e0       	ldi	r24, 0x03	; 3
+ 1c6:	80 83       	st	Z, r24
+ 1c8:	32 83       	std	Z+2, r19	; 0x02
+ 1ca:	21 83       	std	Z+1, r18	; 0x01
+ 1cc:	74 83       	std	Z+4, r23	; 0x04
+ 1ce:	63 83       	std	Z+3, r22	; 0x03
+ 1d0:	15 82       	std	Z+5, r1	; 0x05
+ 1d2:	81 e0       	ldi	r24, 0x01	; 1
+ 1d4:	80 93 8c 00 	sts	0x008C, r24	; 0x80008c <gu8_BCM_State_Machine_TX>
+ 1d8:	80 93 9a 00 	sts	0x009A, r24	; 0x80009a <gu8_lock_TX_Buffer>
+ 1dc:	80 e0       	ldi	r24, 0x00	; 0
+ 1de:	08 95       	ret
+ 1e0:	8f ef       	ldi	r24, 0xFF	; 255
+ 1e2:	08 95       	ret
+ 1e4:	8f ef       	ldi	r24, 0xFF	; 255
+ 1e6:	08 95       	ret
+ 1e8:	8b ef       	ldi	r24, 0xFB	; 251
+ 1ea:	08 95       	ret
+ 1ec:	8c ef       	ldi	r24, 0xFC	; 252
+ 1ee:	08 95       	ret
+
+000001f0 <BCM_TxDispatcher>:
+ 1f0:	80 91 8c 00 	lds	r24, 0x008C	; 0x80008c <gu8_BCM_State_Machine_TX>
+ 1f4:	81 30       	cpi	r24, 0x01	; 1
+ 1f6:	51 f0       	breq	.+20     	; 0x20c <BCM_TxDispatcher+0x1c>
+ 1f8:	08 f4       	brcc	.+2      	; 0x1fc <BCM_TxDispatcher+0xc>
+ 1fa:	ef c0       	rjmp	.+478    	; 0x3da <BCM_TxDispatcher+0x1ea>
+ 1fc:	82 30       	cpi	r24, 0x02	; 2
+ 1fe:	09 f4       	brne	.+2      	; 0x202 <BCM_TxDispatcher+0x12>
+ 200:	b7 c0       	rjmp	.+366    	; 0x370 <BCM_TxDispatcher+0x180>
+ 202:	83 30       	cpi	r24, 0x03	; 3
+ 204:	09 f4       	brne	.+2      	; 0x208 <BCM_TxDispatcher+0x18>
+ 206:	d2 c0       	rjmp	.+420    	; 0x3ac <BCM_TxDispatcher+0x1bc>
+ 208:	8a ef       	ldi	r24, 0xFA	; 250
+ 20a:	08 95       	ret
+ 20c:	80 91 95 00 	lds	r24, 0x0095	; 0x800095 <gu8_BCM_Index_Buffer_TX_Dispat>
+ 210:	90 91 96 00 	lds	r25, 0x0096	; 0x800096 <gu8_BCM_Index_Buffer_TX_Dispat+0x1>
+ 214:	a0 91 97 00 	lds	r26, 0x0097	; 0x800097 <gu8_BCM_Index_Buffer_TX_Dispat+0x2>
+ 218:	b0 91 98 00 	lds	r27, 0x0098	; 0x800098 <gu8_BCM_Index_Buffer_TX_Dispat+0x3>
+ 21c:	81 30       	cpi	r24, 0x01	; 1
+ 21e:	91 05       	cpc	r25, r1
+ 220:	a1 05       	cpc	r26, r1
+ 222:	b1 05       	cpc	r27, r1
+ 224:	41 f1       	breq	.+80     	; 0x276 <BCM_TxDispatcher+0x86>
+ 226:	38 f0       	brcs	.+14     	; 0x236 <BCM_TxDispatcher+0x46>
+ 228:	82 30       	cpi	r24, 0x02	; 2
+ 22a:	91 05       	cpc	r25, r1
+ 22c:	a1 05       	cpc	r26, r1
+ 22e:	b1 05       	cpc	r27, r1
+ 230:	09 f4       	brne	.+2      	; 0x234 <BCM_TxDispatcher+0x44>
+ 232:	41 c0       	rjmp	.+130    	; 0x2b6 <BCM_TxDispatcher+0xc6>
+ 234:	60 c0       	rjmp	.+192    	; 0x2f6 <BCM_TxDispatcher+0x106>
+ 236:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <u8_UART_TX_Flag>
+ 23a:	81 30       	cpi	r24, 0x01	; 1
+ 23c:	09 f0       	breq	.+2      	; 0x240 <BCM_TxDispatcher+0x50>
+ 23e:	cf c0       	rjmp	.+414    	; 0x3de <BCM_TxDispatcher+0x1ee>
+ 240:	80 91 ab 00 	lds	r24, 0x00AB	; 0x8000ab <str_BCM_Fram_TX>
+ 244:	0e 94 4c 04 	call	0x898	; 0x898 <UART_Send_Byte>
+ 248:	10 92 62 00 	sts	0x0062, r1	; 0x800062 <u8_UART_TX_Flag>
+ 24c:	80 91 95 00 	lds	r24, 0x0095	; 0x800095 <gu8_BCM_Index_Buffer_TX_Dispat>
+ 250:	90 91 96 00 	lds	r25, 0x0096	; 0x800096 <gu8_BCM_Index_Buffer_TX_Dispat+0x1>
+ 254:	a0 91 97 00 	lds	r26, 0x0097	; 0x800097 <gu8_BCM_Index_Buffer_TX_Dispat+0x2>
+ 258:	b0 91 98 00 	lds	r27, 0x0098	; 0x800098 <gu8_BCM_Index_Buffer_TX_Dispat+0x3>
+ 25c:	01 96       	adiw	r24, 0x01	; 1
+ 25e:	a1 1d       	adc	r26, r1
+ 260:	b1 1d       	adc	r27, r1
+ 262:	80 93 95 00 	sts	0x0095, r24	; 0x800095 <gu8_BCM_Index_Buffer_TX_Dispat>
+ 266:	90 93 96 00 	sts	0x0096, r25	; 0x800096 <gu8_BCM_Index_Buffer_TX_Dispat+0x1>
+ 26a:	a0 93 97 00 	sts	0x0097, r26	; 0x800097 <gu8_BCM_Index_Buffer_TX_Dispat+0x2>
+ 26e:	b0 93 98 00 	sts	0x0098, r27	; 0x800098 <gu8_BCM_Index_Buffer_TX_Dispat+0x3>
+ 272:	80 e0       	ldi	r24, 0x00	; 0
+ 274:	08 95       	ret
+ 276:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <u8_UART_TX_Flag>
+ 27a:	81 30       	cpi	r24, 0x01	; 1
+ 27c:	09 f0       	breq	.+2      	; 0x280 <BCM_TxDispatcher+0x90>
+ 27e:	b1 c0       	rjmp	.+354    	; 0x3e2 <BCM_TxDispatcher+0x1f2>
+ 280:	80 91 ad 00 	lds	r24, 0x00AD	; 0x8000ad <str_BCM_Fram_TX+0x2>
+ 284:	0e 94 4c 04 	call	0x898	; 0x898 <UART_Send_Byte>
+ 288:	10 92 62 00 	sts	0x0062, r1	; 0x800062 <u8_UART_TX_Flag>
+ 28c:	80 91 95 00 	lds	r24, 0x0095	; 0x800095 <gu8_BCM_Index_Buffer_TX_Dispat>
+ 290:	90 91 96 00 	lds	r25, 0x0096	; 0x800096 <gu8_BCM_Index_Buffer_TX_Dispat+0x1>
+ 294:	a0 91 97 00 	lds	r26, 0x0097	; 0x800097 <gu8_BCM_Index_Buffer_TX_Dispat+0x2>
+ 298:	b0 91 98 00 	lds	r27, 0x0098	; 0x800098 <gu8_BCM_Index_Buffer_TX_Dispat+0x3>
+ 29c:	01 96       	adiw	r24, 0x01	; 1
+ 29e:	a1 1d       	adc	r26, r1
+ 2a0:	b1 1d       	adc	r27, r1
+ 2a2:	80 93 95 00 	sts	0x0095, r24	; 0x800095 <gu8_BCM_Index_Buffer_TX_Dispat>
+ 2a6:	90 93 96 00 	sts	0x0096, r25	; 0x800096 <gu8_BCM_Index_Buffer_TX_Dispat+0x1>
+ 2aa:	a0 93 97 00 	sts	0x0097, r26	; 0x800097 <gu8_BCM_Index_Buffer_TX_Dispat+0x2>
+ 2ae:	b0 93 98 00 	sts	0x0098, r27	; 0x800098 <gu8_BCM_Index_Buffer_TX_Dispat+0x3>
+ 2b2:	80 e0       	ldi	r24, 0x00	; 0
+ 2b4:	08 95       	ret
+ 2b6:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <u8_UART_TX_Flag>
+ 2ba:	81 30       	cpi	r24, 0x01	; 1
+ 2bc:	09 f0       	breq	.+2      	; 0x2c0 <BCM_TxDispatcher+0xd0>
+ 2be:	93 c0       	rjmp	.+294    	; 0x3e6 <BCM_TxDispatcher+0x1f6>
+ 2c0:	80 91 ac 00 	lds	r24, 0x00AC	; 0x8000ac <str_BCM_Fram_TX+0x1>
+ 2c4:	0e 94 4c 04 	call	0x898	; 0x898 <UART_Send_Byte>
+ 2c8:	10 92 62 00 	sts	0x0062, r1	; 0x800062 <u8_UART_TX_Flag>
+ 2cc:	80 91 95 00 	lds	r24, 0x0095	; 0x800095 <gu8_BCM_Index_Buffer_TX_Dispat>
+ 2d0:	90 91 96 00 	lds	r25, 0x0096	; 0x800096 <gu8_BCM_Index_Buffer_TX_Dispat+0x1>
+ 2d4:	a0 91 97 00 	lds	r26, 0x0097	; 0x800097 <gu8_BCM_Index_Buffer_TX_Dispat+0x2>
+ 2d8:	b0 91 98 00 	lds	r27, 0x0098	; 0x800098 <gu8_BCM_Index_Buffer_TX_Dispat+0x3>
+ 2dc:	01 96       	adiw	r24, 0x01	; 1
+ 2de:	a1 1d       	adc	r26, r1
+ 2e0:	b1 1d       	adc	r27, r1
+ 2e2:	80 93 95 00 	sts	0x0095, r24	; 0x800095 <gu8_BCM_Index_Buffer_TX_Dispat>
+ 2e6:	90 93 96 00 	sts	0x0096, r25	; 0x800096 <gu8_BCM_Index_Buffer_TX_Dispat+0x1>
+ 2ea:	a0 93 97 00 	sts	0x0097, r26	; 0x800097 <gu8_BCM_Index_Buffer_TX_Dispat+0x2>
+ 2ee:	b0 93 98 00 	sts	0x0098, r27	; 0x800098 <gu8_BCM_Index_Buffer_TX_Dispat+0x3>
+ 2f2:	80 e0       	ldi	r24, 0x00	; 0
+ 2f4:	08 95       	ret
+ 2f6:	40 91 ac 00 	lds	r20, 0x00AC	; 0x8000ac <str_BCM_Fram_TX+0x1>
+ 2fa:	50 91 ad 00 	lds	r21, 0x00AD	; 0x8000ad <str_BCM_Fram_TX+0x2>
+ 2fe:	4d 5f       	subi	r20, 0xFD	; 253
+ 300:	5f 4f       	sbci	r21, 0xFF	; 255
+ 302:	60 e0       	ldi	r22, 0x00	; 0
+ 304:	70 e0       	ldi	r23, 0x00	; 0
+ 306:	84 17       	cp	r24, r20
+ 308:	95 07       	cpc	r25, r21
+ 30a:	a6 07       	cpc	r26, r22
+ 30c:	b7 07       	cpc	r27, r23
+ 30e:	58 f5       	brcc	.+86     	; 0x366 <BCM_TxDispatcher+0x176>
+ 310:	20 91 62 00 	lds	r18, 0x0062	; 0x800062 <u8_UART_TX_Flag>
+ 314:	21 30       	cpi	r18, 0x01	; 1
+ 316:	09 f0       	breq	.+2      	; 0x31a <BCM_TxDispatcher+0x12a>
+ 318:	68 c0       	rjmp	.+208    	; 0x3ea <BCM_TxDispatcher+0x1fa>
+ 31a:	eb ea       	ldi	r30, 0xAB	; 171
+ 31c:	f0 e0       	ldi	r31, 0x00	; 0
+ 31e:	03 97       	sbiw	r24, 0x03	; 3
+ 320:	23 81       	ldd	r18, Z+3	; 0x03
+ 322:	34 81       	ldd	r19, Z+4	; 0x04
+ 324:	d9 01       	movw	r26, r18
+ 326:	a8 0f       	add	r26, r24
+ 328:	b9 1f       	adc	r27, r25
+ 32a:	35 81       	ldd	r19, Z+5	; 0x05
+ 32c:	2c 91       	ld	r18, X
+ 32e:	23 0f       	add	r18, r19
+ 330:	25 83       	std	Z+5, r18	; 0x05
+ 332:	8c 91       	ld	r24, X
+ 334:	0e 94 4c 04 	call	0x898	; 0x898 <UART_Send_Byte>
+ 338:	10 92 62 00 	sts	0x0062, r1	; 0x800062 <u8_UART_TX_Flag>
+ 33c:	80 91 95 00 	lds	r24, 0x0095	; 0x800095 <gu8_BCM_Index_Buffer_TX_Dispat>
+ 340:	90 91 96 00 	lds	r25, 0x0096	; 0x800096 <gu8_BCM_Index_Buffer_TX_Dispat+0x1>
+ 344:	a0 91 97 00 	lds	r26, 0x0097	; 0x800097 <gu8_BCM_Index_Buffer_TX_Dispat+0x2>
+ 348:	b0 91 98 00 	lds	r27, 0x0098	; 0x800098 <gu8_BCM_Index_Buffer_TX_Dispat+0x3>
+ 34c:	01 96       	adiw	r24, 0x01	; 1
+ 34e:	a1 1d       	adc	r26, r1
+ 350:	b1 1d       	adc	r27, r1
+ 352:	80 93 95 00 	sts	0x0095, r24	; 0x800095 <gu8_BCM_Index_Buffer_TX_Dispat>
+ 356:	90 93 96 00 	sts	0x0096, r25	; 0x800096 <gu8_BCM_Index_Buffer_TX_Dispat+0x1>
+ 35a:	a0 93 97 00 	sts	0x0097, r26	; 0x800097 <gu8_BCM_Index_Buffer_TX_Dispat+0x2>
+ 35e:	b0 93 98 00 	sts	0x0098, r27	; 0x800098 <gu8_BCM_Index_Buffer_TX_Dispat+0x3>
+ 362:	80 e0       	ldi	r24, 0x00	; 0
+ 364:	08 95       	ret
+ 366:	82 e0       	ldi	r24, 0x02	; 2
+ 368:	80 93 8c 00 	sts	0x008C, r24	; 0x80008c <gu8_BCM_State_Machine_TX>
+ 36c:	80 e0       	ldi	r24, 0x00	; 0
+ 36e:	08 95       	ret
+ 370:	80 91 ac 00 	lds	r24, 0x00AC	; 0x8000ac <str_BCM_Fram_TX+0x1>
+ 374:	90 91 ad 00 	lds	r25, 0x00AD	; 0x8000ad <str_BCM_Fram_TX+0x2>
+ 378:	03 96       	adiw	r24, 0x03	; 3
+ 37a:	a0 e0       	ldi	r26, 0x00	; 0
+ 37c:	b0 e0       	ldi	r27, 0x00	; 0
+ 37e:	40 91 95 00 	lds	r20, 0x0095	; 0x800095 <gu8_BCM_Index_Buffer_TX_Dispat>
+ 382:	50 91 96 00 	lds	r21, 0x0096	; 0x800096 <gu8_BCM_Index_Buffer_TX_Dispat+0x1>
+ 386:	60 91 97 00 	lds	r22, 0x0097	; 0x800097 <gu8_BCM_Index_Buffer_TX_Dispat+0x2>
+ 38a:	70 91 98 00 	lds	r23, 0x0098	; 0x800098 <gu8_BCM_Index_Buffer_TX_Dispat+0x3>
+ 38e:	84 17       	cp	r24, r20
+ 390:	95 07       	cpc	r25, r21
+ 392:	a6 07       	cpc	r26, r22
+ 394:	b7 07       	cpc	r27, r23
+ 396:	29 f4       	brne	.+10     	; 0x3a2 <BCM_TxDispatcher+0x1b2>
+ 398:	83 e0       	ldi	r24, 0x03	; 3
+ 39a:	80 93 8c 00 	sts	0x008C, r24	; 0x80008c <gu8_BCM_State_Machine_TX>
+ 39e:	80 e0       	ldi	r24, 0x00	; 0
+ 3a0:	08 95       	ret
+ 3a2:	81 e0       	ldi	r24, 0x01	; 1
+ 3a4:	80 93 8c 00 	sts	0x008C, r24	; 0x80008c <gu8_BCM_State_Machine_TX>
+ 3a8:	80 e0       	ldi	r24, 0x00	; 0
+ 3aa:	08 95       	ret
+ 3ac:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <u8_UART_TX_Flag>
+ 3b0:	81 30       	cpi	r24, 0x01	; 1
+ 3b2:	e9 f4       	brne	.+58     	; 0x3ee <BCM_TxDispatcher+0x1fe>
+ 3b4:	80 91 b0 00 	lds	r24, 0x00B0	; 0x8000b0 <str_BCM_Fram_TX+0x5>
+ 3b8:	0e 94 4c 04 	call	0x898	; 0x898 <UART_Send_Byte>
+ 3bc:	10 92 62 00 	sts	0x0062, r1	; 0x800062 <u8_UART_TX_Flag>
+ 3c0:	10 92 8c 00 	sts	0x008C, r1	; 0x80008c <gu8_BCM_State_Machine_TX>
+ 3c4:	10 92 9a 00 	sts	0x009A, r1	; 0x80009a <gu8_lock_TX_Buffer>
+ 3c8:	e0 91 9b 00 	lds	r30, 0x009B	; 0x80009b <g_callBack_tx>
+ 3cc:	f0 91 9c 00 	lds	r31, 0x009C	; 0x80009c <g_callBack_tx+0x1>
+ 3d0:	30 97       	sbiw	r30, 0x00	; 0
+ 3d2:	79 f0       	breq	.+30     	; 0x3f2 <BCM_TxDispatcher+0x202>
+ 3d4:	09 95       	icall
+ 3d6:	80 e0       	ldi	r24, 0x00	; 0
+ 3d8:	08 95       	ret
+ 3da:	80 e0       	ldi	r24, 0x00	; 0
+ 3dc:	08 95       	ret
+ 3de:	80 e0       	ldi	r24, 0x00	; 0
+ 3e0:	08 95       	ret
+ 3e2:	80 e0       	ldi	r24, 0x00	; 0
+ 3e4:	08 95       	ret
+ 3e6:	80 e0       	ldi	r24, 0x00	; 0
+ 3e8:	08 95       	ret
+ 3ea:	80 e0       	ldi	r24, 0x00	; 0
+ 3ec:	08 95       	ret
+ 3ee:	80 e0       	ldi	r24, 0x00	; 0
+ 3f0:	08 95       	ret
+ 3f2:	8b ef       	ldi	r24, 0xFB	; 251
+ 3f4:	08 95       	ret
+
+000003f6 <BCM_setCallBack_TX>:
+
+
+ /* Global Callback Function to set by customer in APP to run after BCM Finish  */
+ void BCM_setCallBack_TX(void(*APP)(void))
+ {
+	 g_callBack_tx = APP;
+ 3f6:	90 93 9c 00 	sts	0x009C, r25	; 0x80009c <g_callBack_tx+0x1>
+ 3fa:	80 93 9b 00 	sts	0x009B, r24	; 0x80009b <g_callBack_tx>
+ 3fe:	08 95       	ret
+
+00000400 <__vector_10>:
+	 return retval;
+ }
+
+ /*___Timer0 COMP Interrupt___*/
+ void __vector_10 (void)
+ {
+ 400:	1f 92       	push	r1
+ 402:	0f 92       	push	r0
+ 404:	0f b6       	in	r0, 0x3f	; 63
+ 406:	0f 92       	push	r0
+ 408:	11 24       	eor	r1, r1
+ 40a:	2f 93       	push	r18
+ 40c:	8f 93       	push	r24
+ 40e:	9f 93       	push	r25
+ 410:	ef 93       	push	r30
+ 412:	ff 93       	push	r31
+ 414:	cf 93       	push	r28
+ 416:	df 93       	push	r29
+ 418:	1f 92       	push	r1
+ 41a:	cd b7       	in	r28, 0x3d	; 61
+ 41c:	de b7       	in	r29, 0x3e	; 62
+	 uint8_t volatile u8_count =0;
+ 41e:	19 82       	std	Y+1, r1	; 0x01
+	 for( u8_count;u8_count< gu8_BufferCount ;u8_count++ )
+ 420:	89 81       	ldd	r24, Y+1	; 0x01
+ 422:	89 81       	ldd	r24, Y+1	; 0x01
+ 424:	20 91 a5 00 	lds	r18, 0x00A5	; 0x8000a5 <gu8_BufferCount>
+ 428:	82 17       	cp	r24, r18
+ 42a:	88 f4       	brcc	.+34     	; 0x44e <__vector_10+0x4e>
+	 {
+		 /* increase counter from every ISR */
+		 ga_Counter[u8_count]++;
+ 42c:	e9 81       	ldd	r30, Y+1	; 0x01
+ 42e:	f0 e0       	ldi	r31, 0x00	; 0
+ 430:	ee 0f       	add	r30, r30
+ 432:	ff 1f       	adc	r31, r31
+ 434:	e3 56       	subi	r30, 0x63	; 99
+ 436:	ff 4f       	sbci	r31, 0xFF	; 255
+ 438:	80 81       	ld	r24, Z
+ 43a:	91 81       	ldd	r25, Z+1	; 0x01
+ 43c:	01 96       	adiw	r24, 0x01	; 1
+ 43e:	91 83       	std	Z+1, r25	; 0x01
+ 440:	80 83       	st	Z, r24
+
+ /*___Timer0 COMP Interrupt___*/
+ void __vector_10 (void)
+ {
+	 uint8_t volatile u8_count =0;
+	 for( u8_count;u8_count< gu8_BufferCount ;u8_count++ )
+ 442:	89 81       	ldd	r24, Y+1	; 0x01
+ 444:	8f 5f       	subi	r24, 0xFF	; 255
+ 446:	89 83       	std	Y+1, r24	; 0x01
+ 448:	89 81       	ldd	r24, Y+1	; 0x01
+ 44a:	82 17       	cp	r24, r18
+ 44c:	78 f3       	brcs	.-34     	; 0x42c <__vector_10+0x2c>
+	 {
+		 /* increase counter from every ISR */
+		 ga_Counter[u8_count]++;
+	 }
+ 44e:	0f 90       	pop	r0
+ 450:	df 91       	pop	r29
+ 452:	cf 91       	pop	r28
+ 454:	ff 91       	pop	r31
+ 456:	ef 91       	pop	r30
+ 458:	9f 91       	pop	r25
+ 45a:	8f 91       	pop	r24
+ 45c:	2f 91       	pop	r18
+ 45e:	0f 90       	pop	r0
+ 460:	0f be       	out	0x3f, r0	; 63
+ 462:	0f 90       	pop	r0
+ 464:	1f 90       	pop	r1
+ 466:	18 95       	reti
+
+00000468 <Enable_GlobalInterrupt>:
+void Enable_GlobalInterrupt(void)
+{
+	/*
+	*	Enable global interrupt
+	*/
+	SET_BIT(SREG, GI);
+ 468:	8f b7       	in	r24, 0x3f	; 63
+ 46a:	80 68       	ori	r24, 0x80	; 128
+ 46c:	8f bf       	out	0x3f, r24	; 63
+ 46e:	08 95       	ret
+
+00000470 <DIO_Init_Pin>:
+uint8_t  DIO_Init_Pin  (uint8_t u8_Pin_Number ,uint8_t u8_Pin_State)
+{
+	uint8_t retval = ERROR_OK;
+	
+	/* Check Bit in PORT A */
+	if(( u8_Pin_Number >= A0 ) && ( u8_Pin_Number <=A7 ))
+ 470:	88 30       	cpi	r24, 0x08	; 8
+ 472:	08 f5       	brcc	.+66     	; 0x4b6 <DIO_Init_Pin+0x46>
+	{
+		if ( u8_Pin_State == OUT )
+ 474:	61 30       	cpi	r22, 0x01	; 1
+ 476:	71 f4       	brne	.+28     	; 0x494 <DIO_Init_Pin+0x24>
+		{
+			SET_BIT (DDRA,u8_Pin_Number);
+ 478:	4a b3       	in	r20, 0x1a	; 26
+ 47a:	21 e0       	ldi	r18, 0x01	; 1
+ 47c:	30 e0       	ldi	r19, 0x00	; 0
+ 47e:	b9 01       	movw	r22, r18
+ 480:	02 c0       	rjmp	.+4      	; 0x486 <DIO_Init_Pin+0x16>
+ 482:	66 0f       	add	r22, r22
+ 484:	77 1f       	adc	r23, r23
+ 486:	8a 95       	dec	r24
+ 488:	e2 f7       	brpl	.-8      	; 0x482 <DIO_Init_Pin+0x12>
+ 48a:	cb 01       	movw	r24, r22
+ 48c:	84 2b       	or	r24, r20
+ 48e:	8a bb       	out	0x1a, r24	; 26
+#include "DIO.h"
+
+uint8_t  DIO_Init_Pin  (uint8_t u8_Pin_Number ,uint8_t u8_Pin_State)
+{
+	uint8_t retval = ERROR_OK;
+ 490:	80 e0       	ldi	r24, 0x00	; 0
+ 492:	08 95       	ret
+	{
+		if ( u8_Pin_State == OUT )
+		{
+			SET_BIT (DDRA,u8_Pin_Number);
+		}
+			else if ( u8_Pin_State == IN  )
+ 494:	61 11       	cpse	r22, r1
+ 496:	7d c0       	rjmp	.+250    	; 0x592 <DIO_Init_Pin+0x122>
+			{
+				CLR_BIT(DDRA,u8_Pin_Number);
+ 498:	4a b3       	in	r20, 0x1a	; 26
+ 49a:	21 e0       	ldi	r18, 0x01	; 1
+ 49c:	30 e0       	ldi	r19, 0x00	; 0
+ 49e:	b9 01       	movw	r22, r18
+ 4a0:	02 c0       	rjmp	.+4      	; 0x4a6 <DIO_Init_Pin+0x36>
+ 4a2:	66 0f       	add	r22, r22
+ 4a4:	77 1f       	adc	r23, r23
+ 4a6:	8a 95       	dec	r24
+ 4a8:	e2 f7       	brpl	.-8      	; 0x4a2 <DIO_Init_Pin+0x32>
+ 4aa:	cb 01       	movw	r24, r22
+ 4ac:	80 95       	com	r24
+ 4ae:	84 23       	and	r24, r20
+ 4b0:	8a bb       	out	0x1a, r24	; 26
+#include "DIO.h"
+
+uint8_t  DIO_Init_Pin  (uint8_t u8_Pin_Number ,uint8_t u8_Pin_State)
+{
+	uint8_t retval = ERROR_OK;
+ 4b2:	80 e0       	ldi	r24, 0x00	; 0
+ 4b4:	08 95       	ret
+				{
+					retval = ERROR_NOK;
+				}
+	}
+	/* Check Bit in PORT B */
+	else if(( u8_Pin_Number >= B0 ) && ( u8_Pin_Number <=B7 ))
+ 4b6:	98 ef       	ldi	r25, 0xF8	; 248
+ 4b8:	98 0f       	add	r25, r24
+ 4ba:	98 30       	cpi	r25, 0x08	; 8
+ 4bc:	08 f5       	brcc	.+66     	; 0x500 <DIO_Init_Pin+0x90>
+	{
+		u8_Pin_Number -= AVR_PORT_BITS;
+	
+		if ( u8_Pin_State == OUT )
+ 4be:	61 30       	cpi	r22, 0x01	; 1
+ 4c0:	71 f4       	brne	.+28     	; 0x4de <DIO_Init_Pin+0x6e>
+		{
+			SET_BIT(DDRB,u8_Pin_Number);
+ 4c2:	47 b3       	in	r20, 0x17	; 23
+ 4c4:	21 e0       	ldi	r18, 0x01	; 1
+ 4c6:	30 e0       	ldi	r19, 0x00	; 0
+ 4c8:	b9 01       	movw	r22, r18
+ 4ca:	02 c0       	rjmp	.+4      	; 0x4d0 <DIO_Init_Pin+0x60>
+ 4cc:	66 0f       	add	r22, r22
+ 4ce:	77 1f       	adc	r23, r23
+ 4d0:	9a 95       	dec	r25
+ 4d2:	e2 f7       	brpl	.-8      	; 0x4cc <DIO_Init_Pin+0x5c>
+ 4d4:	cb 01       	movw	r24, r22
+ 4d6:	84 2b       	or	r24, r20
+ 4d8:	87 bb       	out	0x17, r24	; 23
+#include "DIO.h"
+
+uint8_t  DIO_Init_Pin  (uint8_t u8_Pin_Number ,uint8_t u8_Pin_State)
+{
+	uint8_t retval = ERROR_OK;
+ 4da:	80 e0       	ldi	r24, 0x00	; 0
+ 4dc:	08 95       	ret
+	
+		if ( u8_Pin_State == OUT )
+		{
+			SET_BIT(DDRB,u8_Pin_Number);
+		}
+			else if ( u8_Pin_State == IN  )
+ 4de:	61 11       	cpse	r22, r1
+ 4e0:	5a c0       	rjmp	.+180    	; 0x596 <DIO_Init_Pin+0x126>
+			{
+				CLR_BIT(DDRB,u8_Pin_Number);
+ 4e2:	47 b3       	in	r20, 0x17	; 23
+ 4e4:	21 e0       	ldi	r18, 0x01	; 1
+ 4e6:	30 e0       	ldi	r19, 0x00	; 0
+ 4e8:	b9 01       	movw	r22, r18
+ 4ea:	02 c0       	rjmp	.+4      	; 0x4f0 <DIO_Init_Pin+0x80>
+ 4ec:	66 0f       	add	r22, r22
+ 4ee:	77 1f       	adc	r23, r23
+ 4f0:	9a 95       	dec	r25
+ 4f2:	e2 f7       	brpl	.-8      	; 0x4ec <DIO_Init_Pin+0x7c>
+ 4f4:	cb 01       	movw	r24, r22
+ 4f6:	80 95       	com	r24
+ 4f8:	84 23       	and	r24, r20
+ 4fa:	87 bb       	out	0x17, r24	; 23
+#include "DIO.h"
+
+uint8_t  DIO_Init_Pin  (uint8_t u8_Pin_Number ,uint8_t u8_Pin_State)
+{
+	uint8_t retval = ERROR_OK;
+ 4fc:	80 e0       	ldi	r24, 0x00	; 0
+ 4fe:	08 95       	ret
+				{
+					retval = ERROR_NOK;
+				}
+	}
+	/* Check Bit in PORT C */
+	else if(( u8_Pin_Number >= C0 ) && ( u8_Pin_Number <=C7 ))
+ 500:	90 ef       	ldi	r25, 0xF0	; 240
+ 502:	98 0f       	add	r25, r24
+ 504:	98 30       	cpi	r25, 0x08	; 8
+ 506:	08 f5       	brcc	.+66     	; 0x54a <DIO_Init_Pin+0xda>
+	{
+		u8_Pin_Number -= AVR_PORT_BITS;
+		u8_Pin_Number -= AVR_PORT_BITS;
+
+		if ( u8_Pin_State == OUT )
+ 508:	61 30       	cpi	r22, 0x01	; 1
+ 50a:	71 f4       	brne	.+28     	; 0x528 <DIO_Init_Pin+0xb8>
+		{
+			SET_BIT(DDRC,u8_Pin_Number);
+ 50c:	44 b3       	in	r20, 0x14	; 20
+ 50e:	21 e0       	ldi	r18, 0x01	; 1
+ 510:	30 e0       	ldi	r19, 0x00	; 0
+ 512:	b9 01       	movw	r22, r18
+ 514:	02 c0       	rjmp	.+4      	; 0x51a <DIO_Init_Pin+0xaa>
+ 516:	66 0f       	add	r22, r22
+ 518:	77 1f       	adc	r23, r23
+ 51a:	9a 95       	dec	r25
+ 51c:	e2 f7       	brpl	.-8      	; 0x516 <DIO_Init_Pin+0xa6>
+ 51e:	cb 01       	movw	r24, r22
+ 520:	84 2b       	or	r24, r20
+ 522:	84 bb       	out	0x14, r24	; 20
+#include "DIO.h"
+
+uint8_t  DIO_Init_Pin  (uint8_t u8_Pin_Number ,uint8_t u8_Pin_State)
+{
+	uint8_t retval = ERROR_OK;
+ 524:	80 e0       	ldi	r24, 0x00	; 0
+ 526:	08 95       	ret
+
+		if ( u8_Pin_State == OUT )
+		{
+			SET_BIT(DDRC,u8_Pin_Number);
+		}
+			else if ( u8_Pin_State == IN  )
+ 528:	61 11       	cpse	r22, r1
+ 52a:	37 c0       	rjmp	.+110    	; 0x59a <DIO_Init_Pin+0x12a>
+			{
+				CLR_BIT(DDRC,u8_Pin_Number);
+ 52c:	44 b3       	in	r20, 0x14	; 20
+ 52e:	21 e0       	ldi	r18, 0x01	; 1
+ 530:	30 e0       	ldi	r19, 0x00	; 0
+ 532:	b9 01       	movw	r22, r18
+ 534:	02 c0       	rjmp	.+4      	; 0x53a <DIO_Init_Pin+0xca>
+ 536:	66 0f       	add	r22, r22
+ 538:	77 1f       	adc	r23, r23
+ 53a:	9a 95       	dec	r25
+ 53c:	e2 f7       	brpl	.-8      	; 0x536 <DIO_Init_Pin+0xc6>
+ 53e:	cb 01       	movw	r24, r22
+ 540:	80 95       	com	r24
+ 542:	84 23       	and	r24, r20
+ 544:	84 bb       	out	0x14, r24	; 20
+#include "DIO.h"
+
+uint8_t  DIO_Init_Pin  (uint8_t u8_Pin_Number ,uint8_t u8_Pin_State)
+{
+	uint8_t retval = ERROR_OK;
+ 546:	80 e0       	ldi	r24, 0x00	; 0
+ 548:	08 95       	ret
+				{
+					retval = ERROR_NOK;
+				}
+	}
+	/* Check Bit in PORT D */
+	else if(( u8_Pin_Number >= D0 ) && ( u8_Pin_Number <=D7 ))
+ 54a:	88 51       	subi	r24, 0x18	; 24
+ 54c:	88 30       	cpi	r24, 0x08	; 8
+ 54e:	38 f5       	brcc	.+78     	; 0x59e <DIO_Init_Pin+0x12e>
+	{
+		u8_Pin_Number -= AVR_PORT_BITS;
+		u8_Pin_Number -= AVR_PORT_BITS;
+		u8_Pin_Number -= AVR_PORT_BITS;
+
+		if ( u8_Pin_State == OUT )
+ 550:	61 30       	cpi	r22, 0x01	; 1
+ 552:	71 f4       	brne	.+28     	; 0x570 <DIO_Init_Pin+0x100>
+		{
+			SET_BIT(DDRD,u8_Pin_Number);
+ 554:	41 b3       	in	r20, 0x11	; 17
+ 556:	21 e0       	ldi	r18, 0x01	; 1
+ 558:	30 e0       	ldi	r19, 0x00	; 0
+ 55a:	b9 01       	movw	r22, r18
+ 55c:	02 c0       	rjmp	.+4      	; 0x562 <DIO_Init_Pin+0xf2>
+ 55e:	66 0f       	add	r22, r22
+ 560:	77 1f       	adc	r23, r23
+ 562:	8a 95       	dec	r24
+ 564:	e2 f7       	brpl	.-8      	; 0x55e <DIO_Init_Pin+0xee>
+ 566:	cb 01       	movw	r24, r22
+ 568:	84 2b       	or	r24, r20
+ 56a:	81 bb       	out	0x11, r24	; 17
+#include "DIO.h"
+
+uint8_t  DIO_Init_Pin  (uint8_t u8_Pin_Number ,uint8_t u8_Pin_State)
+{
+	uint8_t retval = ERROR_OK;
+ 56c:	80 e0       	ldi	r24, 0x00	; 0
+ 56e:	08 95       	ret
+
+		if ( u8_Pin_State == OUT )
+		{
+			SET_BIT(DDRD,u8_Pin_Number);
+		}
+			else if ( u8_Pin_State == IN  )
+ 570:	61 11       	cpse	r22, r1
+ 572:	17 c0       	rjmp	.+46     	; 0x5a2 <DIO_Init_Pin+0x132>
+			{
+				CLR_BIT(DDRD,u8_Pin_Number);
+ 574:	41 b3       	in	r20, 0x11	; 17
+ 576:	21 e0       	ldi	r18, 0x01	; 1
+ 578:	30 e0       	ldi	r19, 0x00	; 0
+ 57a:	b9 01       	movw	r22, r18
+ 57c:	02 c0       	rjmp	.+4      	; 0x582 <DIO_Init_Pin+0x112>
+ 57e:	66 0f       	add	r22, r22
+ 580:	77 1f       	adc	r23, r23
+ 582:	8a 95       	dec	r24
+ 584:	e2 f7       	brpl	.-8      	; 0x57e <DIO_Init_Pin+0x10e>
+ 586:	cb 01       	movw	r24, r22
+ 588:	80 95       	com	r24
+ 58a:	84 23       	and	r24, r20
+ 58c:	81 bb       	out	0x11, r24	; 17
+#include "DIO.h"
+
+uint8_t  DIO_Init_Pin  (uint8_t u8_Pin_Number ,uint8_t u8_Pin_State)
+{
+	uint8_t retval = ERROR_OK;
+ 58e:	80 e0       	ldi	r24, 0x00	; 0
+ 590:	08 95       	ret
+			{
+				CLR_BIT(DDRA,u8_Pin_Number);
+			}
+				else
+				{
+					retval = ERROR_NOK;
+ 592:	81 e0       	ldi	r24, 0x01	; 1
+ 594:	08 95       	ret
+			{
+				CLR_BIT(DDRB,u8_Pin_Number);
+			}
+				else
+				{
+					retval = ERROR_NOK;
+ 596:	81 e0       	ldi	r24, 0x01	; 1
+ 598:	08 95       	ret
+			{
+				CLR_BIT(DDRC,u8_Pin_Number);
+			}
+				else
+				{
+					retval = ERROR_NOK;
+ 59a:	81 e0       	ldi	r24, 0x01	; 1
+ 59c:	08 95       	ret
+				}
+	}
+	/* ERROR Bit Number is wrong */
+	else
+	{
+		retval = ERROR_NOK;
+ 59e:	81 e0       	ldi	r24, 0x01	; 1
+ 5a0:	08 95       	ret
+			{
+				CLR_BIT(DDRD,u8_Pin_Number);
+			}
+				else
+				{
+					retval = ERROR_NOK;
+ 5a2:	81 e0       	ldi	r24, 0x01	; 1
+	else
+	{
+		retval = ERROR_NOK;
+	}
+	return retval;	
+}
+ 5a4:	08 95       	ret
+
+000005a6 <SPI_Init>:
+	else 
+	{
+		retval = ERROR_INTERRUPT_POLLING;		/* Wrong SPI Not Interrupt or Polling  */
+	}
+	return retval;
+}
+ 5a6:	cf 93       	push	r28
+ 5a8:	df 93       	push	r29
+ 5aa:	ec 01       	movw	r28, r24
+ 5ac:	88 81       	ld	r24, Y
+ 5ae:	81 30       	cpi	r24, 0x01	; 1
+ 5b0:	09 f0       	breq	.+2      	; 0x5b4 <SPI_Init+0xe>
+ 5b2:	78 c0       	rjmp	.+240    	; 0x6a4 <SPI_Init+0xfe>
+ 5b4:	6c 9a       	sbi	0x0d, 4	; 13
+ 5b6:	61 e0       	ldi	r22, 0x01	; 1
+ 5b8:	8c e0       	ldi	r24, 0x0C	; 12
+ 5ba:	0e 94 38 02 	call	0x470	; 0x470 <DIO_Init_Pin>
+ 5be:	61 e0       	ldi	r22, 0x01	; 1
+ 5c0:	8d e0       	ldi	r24, 0x0D	; 13
+ 5c2:	0e 94 38 02 	call	0x470	; 0x470 <DIO_Init_Pin>
+ 5c6:	60 e0       	ldi	r22, 0x00	; 0
+ 5c8:	8e e0       	ldi	r24, 0x0E	; 14
+ 5ca:	0e 94 38 02 	call	0x470	; 0x470 <DIO_Init_Pin>
+ 5ce:	61 e0       	ldi	r22, 0x01	; 1
+ 5d0:	8f e0       	ldi	r24, 0x0F	; 15
+ 5d2:	0e 94 38 02 	call	0x470	; 0x470 <DIO_Init_Pin>
+ 5d6:	89 81       	ldd	r24, Y+1	; 0x01
+ 5d8:	81 11       	cpse	r24, r1
+ 5da:	1a c0       	rjmp	.+52     	; 0x610 <SPI_Init+0x6a>
+ 5dc:	70 98       	cbi	0x0e, 0	; 14
+ 5de:	8a 81       	ldd	r24, Y+2	; 0x02
+ 5e0:	81 30       	cpi	r24, 0x01	; 1
+ 5e2:	51 f0       	breq	.+20     	; 0x5f8 <SPI_Init+0x52>
+ 5e4:	28 f0       	brcs	.+10     	; 0x5f0 <SPI_Init+0x4a>
+ 5e6:	82 30       	cpi	r24, 0x02	; 2
+ 5e8:	59 f0       	breq	.+22     	; 0x600 <SPI_Init+0x5a>
+ 5ea:	83 30       	cpi	r24, 0x03	; 3
+ 5ec:	69 f0       	breq	.+26     	; 0x608 <SPI_Init+0x62>
+ 5ee:	26 c0       	rjmp	.+76     	; 0x63c <SPI_Init+0x96>
+ 5f0:	68 98       	cbi	0x0d, 0	; 13
+ 5f2:	69 98       	cbi	0x0d, 1	; 13
+ 5f4:	80 e0       	ldi	r24, 0x00	; 0
+ 5f6:	27 c0       	rjmp	.+78     	; 0x646 <SPI_Init+0xa0>
+ 5f8:	68 9a       	sbi	0x0d, 0	; 13
+ 5fa:	69 98       	cbi	0x0d, 1	; 13
+ 5fc:	80 e0       	ldi	r24, 0x00	; 0
+ 5fe:	23 c0       	rjmp	.+70     	; 0x646 <SPI_Init+0xa0>
+ 600:	68 98       	cbi	0x0d, 0	; 13
+ 602:	69 9a       	sbi	0x0d, 1	; 13
+ 604:	80 e0       	ldi	r24, 0x00	; 0
+ 606:	1f c0       	rjmp	.+62     	; 0x646 <SPI_Init+0xa0>
+ 608:	68 9a       	sbi	0x0d, 0	; 13
+ 60a:	69 9a       	sbi	0x0d, 1	; 13
+ 60c:	80 e0       	ldi	r24, 0x00	; 0
+ 60e:	1b c0       	rjmp	.+54     	; 0x646 <SPI_Init+0xa0>
+ 610:	81 30       	cpi	r24, 0x01	; 1
+ 612:	b1 f4       	brne	.+44     	; 0x640 <SPI_Init+0x9a>
+ 614:	70 9a       	sbi	0x0e, 0	; 14
+ 616:	8a 81       	ldd	r24, Y+2	; 0x02
+ 618:	81 30       	cpi	r24, 0x01	; 1
+ 61a:	41 f0       	breq	.+16     	; 0x62c <SPI_Init+0x86>
+ 61c:	18 f0       	brcs	.+6      	; 0x624 <SPI_Init+0x7e>
+ 61e:	82 30       	cpi	r24, 0x02	; 2
+ 620:	49 f0       	breq	.+18     	; 0x634 <SPI_Init+0x8e>
+ 622:	10 c0       	rjmp	.+32     	; 0x644 <SPI_Init+0x9e>
+ 624:	68 98       	cbi	0x0d, 0	; 13
+ 626:	69 98       	cbi	0x0d, 1	; 13
+ 628:	80 e0       	ldi	r24, 0x00	; 0
+ 62a:	0d c0       	rjmp	.+26     	; 0x646 <SPI_Init+0xa0>
+ 62c:	68 9a       	sbi	0x0d, 0	; 13
+ 62e:	69 98       	cbi	0x0d, 1	; 13
+ 630:	80 e0       	ldi	r24, 0x00	; 0
+ 632:	09 c0       	rjmp	.+18     	; 0x646 <SPI_Init+0xa0>
+ 634:	68 98       	cbi	0x0d, 0	; 13
+ 636:	69 9a       	sbi	0x0d, 1	; 13
+ 638:	80 e0       	ldi	r24, 0x00	; 0
+ 63a:	05 c0       	rjmp	.+10     	; 0x646 <SPI_Init+0xa0>
+ 63c:	8e ef       	ldi	r24, 0xFE	; 254
+ 63e:	03 c0       	rjmp	.+6      	; 0x646 <SPI_Init+0xa0>
+ 640:	8f ef       	ldi	r24, 0xFF	; 255
+ 642:	01 c0       	rjmp	.+2      	; 0x646 <SPI_Init+0xa0>
+ 644:	8e ef       	ldi	r24, 0xFE	; 254
+ 646:	9b 81       	ldd	r25, Y+3	; 0x03
+ 648:	91 30       	cpi	r25, 0x01	; 1
+ 64a:	41 f4       	brne	.+16     	; 0x65c <SPI_Init+0xb6>
+ 64c:	6f 9a       	sbi	0x0d, 7	; 13
+ 64e:	9f b7       	in	r25, 0x3f	; 63
+ 650:	90 68       	ori	r25, 0x80	; 128
+ 652:	9f bf       	out	0x3f, r25	; 63
+ 654:	91 e0       	ldi	r25, 0x01	; 1
+ 656:	90 93 a6 00 	sts	0x00A6, r25	; 0x8000a6 <gu8_Interrupt_Polling_Mode>
+ 65a:	06 c0       	rjmp	.+12     	; 0x668 <SPI_Init+0xc2>
+ 65c:	91 11       	cpse	r25, r1
+ 65e:	03 c0       	rjmp	.+6      	; 0x666 <SPI_Init+0xc0>
+ 660:	10 92 a6 00 	sts	0x00A6, r1	; 0x8000a6 <gu8_Interrupt_Polling_Mode>
+ 664:	01 c0       	rjmp	.+2      	; 0x668 <SPI_Init+0xc2>
+ 666:	8c ef       	ldi	r24, 0xFC	; 252
+ 668:	9d 81       	ldd	r25, Y+5	; 0x05
+ 66a:	91 11       	cpse	r25, r1
+ 66c:	02 c0       	rjmp	.+4      	; 0x672 <SPI_Init+0xcc>
+ 66e:	6d 98       	cbi	0x0d, 5	; 13
+ 670:	05 c0       	rjmp	.+10     	; 0x67c <SPI_Init+0xd6>
+ 672:	91 30       	cpi	r25, 0x01	; 1
+ 674:	11 f4       	brne	.+4      	; 0x67a <SPI_Init+0xd4>
+ 676:	6d 9a       	sbi	0x0d, 5	; 13
+ 678:	01 c0       	rjmp	.+2      	; 0x67c <SPI_Init+0xd6>
+ 67a:	8b ef       	ldi	r24, 0xFB	; 251
+ 67c:	9e 81       	ldd	r25, Y+6	; 0x06
+ 67e:	91 11       	cpse	r25, r1
+ 680:	02 c0       	rjmp	.+4      	; 0x686 <SPI_Init+0xe0>
+ 682:	6b 98       	cbi	0x0d, 3	; 13
+ 684:	05 c0       	rjmp	.+10     	; 0x690 <SPI_Init+0xea>
+ 686:	91 30       	cpi	r25, 0x01	; 1
+ 688:	11 f4       	brne	.+4      	; 0x68e <SPI_Init+0xe8>
+ 68a:	6b 9a       	sbi	0x0d, 3	; 13
+ 68c:	01 c0       	rjmp	.+2      	; 0x690 <SPI_Init+0xea>
+ 68e:	8a ef       	ldi	r24, 0xFA	; 250
+ 690:	9c 81       	ldd	r25, Y+4	; 0x04
+ 692:	91 11       	cpse	r25, r1
+ 694:	02 c0       	rjmp	.+4      	; 0x69a <SPI_Init+0xf4>
+ 696:	6a 98       	cbi	0x0d, 2	; 13
+ 698:	4c c0       	rjmp	.+152    	; 0x732 <SPI_Init+0x18c>
+ 69a:	91 30       	cpi	r25, 0x01	; 1
+ 69c:	09 f0       	breq	.+2      	; 0x6a0 <SPI_Init+0xfa>
+ 69e:	44 c0       	rjmp	.+136    	; 0x728 <SPI_Init+0x182>
+ 6a0:	6a 9a       	sbi	0x0d, 2	; 13
+ 6a2:	47 c0       	rjmp	.+142    	; 0x732 <SPI_Init+0x18c>
+ 6a4:	81 11       	cpse	r24, r1
+ 6a6:	42 c0       	rjmp	.+132    	; 0x72c <SPI_Init+0x186>
+ 6a8:	6c 98       	cbi	0x0d, 4	; 13
+ 6aa:	60 e0       	ldi	r22, 0x00	; 0
+ 6ac:	8c e0       	ldi	r24, 0x0C	; 12
+ 6ae:	0e 94 38 02 	call	0x470	; 0x470 <DIO_Init_Pin>
+ 6b2:	60 e0       	ldi	r22, 0x00	; 0
+ 6b4:	8d e0       	ldi	r24, 0x0D	; 13
+ 6b6:	0e 94 38 02 	call	0x470	; 0x470 <DIO_Init_Pin>
+ 6ba:	61 e0       	ldi	r22, 0x01	; 1
+ 6bc:	8e e0       	ldi	r24, 0x0E	; 14
+ 6be:	0e 94 38 02 	call	0x470	; 0x470 <DIO_Init_Pin>
+ 6c2:	60 e0       	ldi	r22, 0x00	; 0
+ 6c4:	8f e0       	ldi	r24, 0x0F	; 15
+ 6c6:	0e 94 38 02 	call	0x470	; 0x470 <DIO_Init_Pin>
+ 6ca:	8b 81       	ldd	r24, Y+3	; 0x03
+ 6cc:	81 30       	cpi	r24, 0x01	; 1
+ 6ce:	49 f4       	brne	.+18     	; 0x6e2 <SPI_Init+0x13c>
+ 6d0:	6f 9a       	sbi	0x0d, 7	; 13
+ 6d2:	8f b7       	in	r24, 0x3f	; 63
+ 6d4:	80 68       	ori	r24, 0x80	; 128
+ 6d6:	8f bf       	out	0x3f, r24	; 63
+ 6d8:	81 e0       	ldi	r24, 0x01	; 1
+ 6da:	80 93 a6 00 	sts	0x00A6, r24	; 0x8000a6 <gu8_Interrupt_Polling_Mode>
+ 6de:	80 e0       	ldi	r24, 0x00	; 0
+ 6e0:	06 c0       	rjmp	.+12     	; 0x6ee <SPI_Init+0x148>
+ 6e2:	81 11       	cpse	r24, r1
+ 6e4:	03 c0       	rjmp	.+6      	; 0x6ec <SPI_Init+0x146>
+ 6e6:	10 92 a6 00 	sts	0x00A6, r1	; 0x8000a6 <gu8_Interrupt_Polling_Mode>
+ 6ea:	01 c0       	rjmp	.+2      	; 0x6ee <SPI_Init+0x148>
+ 6ec:	8c ef       	ldi	r24, 0xFC	; 252
+ 6ee:	9d 81       	ldd	r25, Y+5	; 0x05
+ 6f0:	91 11       	cpse	r25, r1
+ 6f2:	02 c0       	rjmp	.+4      	; 0x6f8 <SPI_Init+0x152>
+ 6f4:	6d 98       	cbi	0x0d, 5	; 13
+ 6f6:	05 c0       	rjmp	.+10     	; 0x702 <SPI_Init+0x15c>
+ 6f8:	91 30       	cpi	r25, 0x01	; 1
+ 6fa:	11 f4       	brne	.+4      	; 0x700 <SPI_Init+0x15a>
+ 6fc:	6d 9a       	sbi	0x0d, 5	; 13
+ 6fe:	01 c0       	rjmp	.+2      	; 0x702 <SPI_Init+0x15c>
+ 700:	8b ef       	ldi	r24, 0xFB	; 251
+ 702:	9e 81       	ldd	r25, Y+6	; 0x06
+ 704:	91 11       	cpse	r25, r1
+ 706:	02 c0       	rjmp	.+4      	; 0x70c <SPI_Init+0x166>
+ 708:	6b 98       	cbi	0x0d, 3	; 13
+ 70a:	05 c0       	rjmp	.+10     	; 0x716 <SPI_Init+0x170>
+ 70c:	91 30       	cpi	r25, 0x01	; 1
+ 70e:	11 f4       	brne	.+4      	; 0x714 <SPI_Init+0x16e>
+ 710:	6b 9a       	sbi	0x0d, 3	; 13
+ 712:	01 c0       	rjmp	.+2      	; 0x716 <SPI_Init+0x170>
+ 714:	8a ef       	ldi	r24, 0xFA	; 250
+ 716:	9c 81       	ldd	r25, Y+4	; 0x04
+ 718:	91 11       	cpse	r25, r1
+ 71a:	02 c0       	rjmp	.+4      	; 0x720 <SPI_Init+0x17a>
+ 71c:	6a 98       	cbi	0x0d, 2	; 13
+ 71e:	09 c0       	rjmp	.+18     	; 0x732 <SPI_Init+0x18c>
+ 720:	91 30       	cpi	r25, 0x01	; 1
+ 722:	31 f4       	brne	.+12     	; 0x730 <SPI_Init+0x18a>
+ 724:	6a 9a       	sbi	0x0d, 2	; 13
+ 726:	05 c0       	rjmp	.+10     	; 0x732 <SPI_Init+0x18c>
+ 728:	89 ef       	ldi	r24, 0xF9	; 249
+ 72a:	03 c0       	rjmp	.+6      	; 0x732 <SPI_Init+0x18c>
+ 72c:	8d ef       	ldi	r24, 0xFD	; 253
+ 72e:	01 c0       	rjmp	.+2      	; 0x732 <SPI_Init+0x18c>
+ 730:	89 ef       	ldi	r24, 0xF9	; 249
+ 732:	6e 9a       	sbi	0x0d, 6	; 13
+ 734:	df 91       	pop	r29
+ 736:	cf 91       	pop	r28
+ 738:	08 95       	ret
+
+0000073a <__vector_12>:
+
+/* ISR of SPI */
+void __vector_12(void)
+{
+ 73a:	1f 92       	push	r1
+ 73c:	0f 92       	push	r0
+ 73e:	0f b6       	in	r0, 0x3f	; 63
+ 740:	0f 92       	push	r0
+ 742:	11 24       	eor	r1, r1
+ 744:	8f 93       	push	r24
+	gu8_Data_SentFlag = 1;    /* Set the Global variable to ensure of ISR data sent successfully. */
+ 746:	81 e0       	ldi	r24, 0x01	; 1
+ 748:	80 93 63 00 	sts	0x0063, r24	; 0x800063 <gu8_Data_SentFlag>
+ 74c:	8f 91       	pop	r24
+ 74e:	0f 90       	pop	r0
+ 750:	0f be       	out	0x3f, r0	; 63
+ 752:	0f 90       	pop	r0
+ 754:	1f 90       	pop	r1
+ 756:	18 95       	reti
+
+00000758 <APP>:
+
+
+
+void APP (void)
+{
+	PORTA = 0xff;
+ 758:	8f ef       	ldi	r24, 0xFF	; 255
+ 75a:	8b bb       	out	0x1b, r24	; 27
+ 75c:	08 95       	ret
+
+0000075e <main>:
+#include "BCM_Pb.h"
+
+void APP (void);
+
+int main(void)
+{
+ 75e:	cf 93       	push	r28
+ 760:	df 93       	push	r29
+ 762:	cd b7       	in	r28, 0x3d	; 61
+ 764:	de b7       	in	r29, 0x3e	; 62
+ 766:	65 97       	sbiw	r28, 0x15	; 21
+ 768:	0f b6       	in	r0, 0x3f	; 63
+ 76a:	f8 94       	cli
+ 76c:	de bf       	out	0x3e, r29	; 62
+ 76e:	0f be       	out	0x3f, r0	; 63
+ 770:	cd bf       	out	0x3d, r28	; 61
+	uint8_t arr[21]={"Test BCM module Alaa"};
+ 772:	85 e1       	ldi	r24, 0x15	; 21
+ 774:	e4 e7       	ldi	r30, 0x74	; 116
+ 776:	f0 e0       	ldi	r31, 0x00	; 0
+ 778:	de 01       	movw	r26, r28
+ 77a:	11 96       	adiw	r26, 0x01	; 1
+ 77c:	01 90       	ld	r0, Z+
+ 77e:	0d 92       	st	X+, r0
+ 780:	8a 95       	dec	r24
+ 782:	e1 f7       	brne	.-8      	; 0x77c <main+0x1e>
+	BCM_Init(UART);
+ 784:	81 e0       	ldi	r24, 0x01	; 1
+ 786:	0e 94 8d 00 	call	0x11a	; 0x11a <BCM_Init>
+	BCM_Send(21,arr);
+ 78a:	be 01       	movw	r22, r28
+ 78c:	6f 5f       	subi	r22, 0xFF	; 255
+ 78e:	7f 4f       	sbci	r23, 0xFF	; 255
+ 790:	85 e1       	ldi	r24, 0x15	; 21
+ 792:	90 e0       	ldi	r25, 0x00	; 0
+ 794:	0e 94 d0 00 	call	0x1a0	; 0x1a0 <BCM_Send>
+	BCM_setCallBack_TX(APP);
+ 798:	8c ea       	ldi	r24, 0xAC	; 172
+ 79a:	93 e0       	ldi	r25, 0x03	; 3
+ 79c:	0e 94 fb 01 	call	0x3f6	; 0x3f6 <BCM_setCallBack_TX>
+
+	while(1)
+	{
+		BCM_TxDispatcher();
+ 7a0:	0e 94 f8 00 	call	0x1f0	; 0x1f0 <BCM_TxDispatcher>
+ 7a4:	fd cf       	rjmp	.-6      	; 0x7a0 <main+0x42>
+
+000007a6 <UART_Init>:
+/* brief!  UART initialization                                                         */
+/* param!  void                                                                        */
+/* return! u8 Indication of the execution if it fails or not                           */
+/***************************************************************************************/
+uint8_t UART_Init(Str_UARTConfiguration_t *pstr_UART_cfg)
+{
+ 7a6:	cf 93       	push	r28
+ 7a8:	df 93       	push	r29
+	/*
+	 *	Development Error Tracer
+	 */
+
+	uint8_t au8_DET = ERROR_OK ;
+	if(NULL != pstr_UART_cfg)
+ 7aa:	00 97       	sbiw	r24, 0x00	; 0
+ 7ac:	09 f4       	brne	.+2      	; 0x7b0 <UART_Init+0xa>
+ 7ae:	70 c0       	rjmp	.+224    	; 0x890 <__stack+0x31>
+ 7b0:	ec 01       	movw	r28, r24
+	{
+		/*
+		*	Checking the desired Mode if it's polling or interrupt
+		*/
+		if(INTERRUPT == pstr_UART_cfg -> u8_Interrupt_Mode)
+ 7b2:	88 81       	ld	r24, Y
+ 7b4:	81 30       	cpi	r24, 0x01	; 1
+ 7b6:	49 f4       	brne	.+18     	; 0x7ca <UART_Init+0x24>
+		{
+			Enable_GlobalInterrupt();
+ 7b8:	0e 94 34 02 	call	0x468	; 0x468 <Enable_GlobalInterrupt>
+
+			SET_BIT(UCSRB, RXCIE); /* Enable RX Complete Interrupt */
+ 7bc:	57 9a       	sbi	0x0a, 7	; 10
+			SET_BIT(UCSRB, TXCIE); /* Enable RT Complete Interrupt */
+ 7be:	56 9a       	sbi	0x0a, 6	; 10
+			//SET_BIT(UCSRB, UDRIE); /* Enable Data Register Empty Interrupt */
+			u8_UART_InterruptMode = INTERRUPT ;
+ 7c0:	81 e0       	ldi	r24, 0x01	; 1
+ 7c2:	80 93 73 00 	sts	0x0073, r24	; 0x800073 <u8_UART_InterruptMode>
+{
+	/*
+	 *	Development Error Tracer
+	 */
+
+	uint8_t au8_DET = ERROR_OK ;
+ 7c6:	80 e0       	ldi	r24, 0x00	; 0
+ 7c8:	09 c0       	rjmp	.+18     	; 0x7dc <UART_Init+0x36>
+			SET_BIT(UCSRB, RXCIE); /* Enable RX Complete Interrupt */
+			SET_BIT(UCSRB, TXCIE); /* Enable RT Complete Interrupt */
+			//SET_BIT(UCSRB, UDRIE); /* Enable Data Register Empty Interrupt */
+			u8_UART_InterruptMode = INTERRUPT ;
+		}
+		else if(POLLING == pstr_UART_cfg -> u8_Interrupt_Mode)
+ 7ca:	81 11       	cpse	r24, r1
+ 7cc:	06 c0       	rjmp	.+12     	; 0x7da <UART_Init+0x34>
+		{
+			CLEAR_BIT(UCSRB, RXCIE); /* Disable RX Complete Interrupt */
+ 7ce:	57 98       	cbi	0x0a, 7	; 10
+			CLEAR_BIT(UCSRB, TXCIE); /* Disable RT Complete Interrupt */
+ 7d0:	56 98       	cbi	0x0a, 6	; 10
+			CLEAR_BIT(UCSRB, UDRIE); /* Disable Data Register Empty Interrupt */
+ 7d2:	55 98       	cbi	0x0a, 5	; 10
+			u8_UART_InterruptMode = POLLING ;
+ 7d4:	10 92 73 00 	sts	0x0073, r1	; 0x800073 <u8_UART_InterruptMode>
+ 7d8:	01 c0       	rjmp	.+2      	; 0x7dc <UART_Init+0x36>
+		}
+		else
+		{
+			/* Handling of entering wrong Mode */
+			au8_DET = E_INTERRUPT_MODE ;
+ 7da:	84 e0       	ldi	r24, 0x04	; 4
+		}
+
+		 /*
+		  * selects between accessing the UCSRC or the UBRRH Register
+		  */
+		SET_BIT(UCSRC, URSEL);
+ 7dc:	90 b5       	in	r25, 0x20	; 32
+ 7de:	90 68       	ori	r25, 0x80	; 128
+ 7e0:	90 bd       	out	0x20, r25	; 32
+
+		/* Handling synchronization Mode */
+		if(ASYNCHRONOUS == pstr_UART_cfg -> u8_Sync)
+ 7e2:	99 81       	ldd	r25, Y+1	; 0x01
+ 7e4:	91 11       	cpse	r25, r1
+ 7e6:	0b c0       	rjmp	.+22     	; 0x7fe <UART_Init+0x58>
+		{
+			/* "Asynchronous" USART Mode Select */
+			CLEAR_BIT(UCSRC, UMSEL);
+ 7e8:	90 b5       	in	r25, 0x20	; 32
+ 7ea:	9f 7b       	andi	r25, 0xBF	; 191
+ 7ec:	90 bd       	out	0x20, r25	; 32
+			if(BAUDRATE_9600 == pstr_UART_cfg -> u16_BaudRate)
+ 7ee:	2a 81       	ldd	r18, Y+2	; 0x02
+ 7f0:	3b 81       	ldd	r19, Y+3	; 0x03
+ 7f2:	23 33       	cpi	r18, 0x33	; 51
+ 7f4:	31 05       	cpc	r19, r1
+ 7f6:	49 f4       	brne	.+18     	; 0x80a <UART_Init+0x64>
+			{
+				//UCSRC=0b0....... Lw 3aez ast5dm UBRRH, menf3sh a3mlo b CLEAR_BIT 3san htd5ol t2ra al awl w b3den t3ml clear f htla2y fi al bit '1'
+				UBRRL = BAUDRATE_9600;//Baud Rate 9600
+ 7f8:	93 e3       	ldi	r25, 0x33	; 51
+ 7fa:	99 b9       	out	0x09, r25	; 9
+ 7fc:	09 c0       	rjmp	.+18     	; 0x810 <UART_Init+0x6a>
+				/* Handling of entering wrong BaudRate */
+				au8_DET = E_BAUDRATE ;
+			}
+
+		}
+		else if(SYNCHRONOUS == pstr_UART_cfg -> u8_Sync)
+ 7fe:	91 30       	cpi	r25, 0x01	; 1
+ 800:	31 f4       	brne	.+12     	; 0x80e <UART_Init+0x68>
+		{
+			/* "Synchronous" USART Mode Select */
+			SET_BIT(UCSRC, UMSEL);
+ 802:	90 b5       	in	r25, 0x20	; 32
+ 804:	90 64       	ori	r25, 0x40	; 64
+ 806:	90 bd       	out	0x20, r25	; 32
+ 808:	03 c0       	rjmp	.+6      	; 0x810 <UART_Init+0x6a>
+				UBRRL = BAUDRATE_9600;//Baud Rate 9600
+			}
+			else
+			{
+				/* Handling of entering wrong BaudRate */
+				au8_DET = E_BAUDRATE ;
+ 80a:	82 e0       	ldi	r24, 0x02	; 2
+ 80c:	01 c0       	rjmp	.+2      	; 0x810 <UART_Init+0x6a>
+			 */
+		}
+		else
+		{
+			/* Handling of entering wrong synchronization Mode */
+			au8_DET = E_SYNC ;
+ 80e:	81 e0       	ldi	r24, 0x01	; 1
+		}
+
+		/*
+		 * Parity Mode
+		 */
+		if(Disabled_PARITY == pstr_UART_cfg -> u8_Parity)
+ 810:	9d 81       	ldd	r25, Y+5	; 0x05
+ 812:	91 11       	cpse	r25, r1
+ 814:	07 c0       	rjmp	.+14     	; 0x824 <UART_Init+0x7e>
+		{
+			CLEAR_BIT(UCSRC, UPM1);
+ 816:	90 b5       	in	r25, 0x20	; 32
+ 818:	9f 7d       	andi	r25, 0xDF	; 223
+ 81a:	90 bd       	out	0x20, r25	; 32
+			CLEAR_BIT(UCSRC, UPM0);
+ 81c:	90 b5       	in	r25, 0x20	; 32
+ 81e:	9f 7e       	andi	r25, 0xEF	; 239
+ 820:	90 bd       	out	0x20, r25	; 32
+ 822:	01 c0       	rjmp	.+2      	; 0x826 <UART_Init+0x80>
+			SET_BIT(UCSRC, UPM0);
+		}
+		else
+		{
+			/* Handling of entering wrong Parity */
+			au8_DET = E_PARITY ;
+ 824:	86 e0       	ldi	r24, 0x06	; 6
+		}
+
+		/*
+		 *  Stop Bit Select
+		 */
+		if(STOP_1B == pstr_UART_cfg -> u8_StopSize)
+ 826:	9e 81       	ldd	r25, Y+6	; 0x06
+ 828:	91 11       	cpse	r25, r1
+ 82a:	04 c0       	rjmp	.+8      	; 0x834 <UART_Init+0x8e>
+		{
+			CLEAR_BIT(UCSRC, USBS); /* One Stop Bit */
+ 82c:	90 b5       	in	r25, 0x20	; 32
+ 82e:	97 7f       	andi	r25, 0xF7	; 247
+ 830:	90 bd       	out	0x20, r25	; 32
+ 832:	07 c0       	rjmp	.+14     	; 0x842 <UART_Init+0x9c>
+		}
+		else if((STOP_2B == pstr_UART_cfg -> u8_StopSize))
+ 834:	91 30       	cpi	r25, 0x01	; 1
+ 836:	21 f4       	brne	.+8      	; 0x840 <UART_Init+0x9a>
+		{
+			SET_BIT(UCSRC, USBS); /* Two Stop Bit */
+ 838:	90 b5       	in	r25, 0x20	; 32
+ 83a:	98 60       	ori	r25, 0x08	; 8
+ 83c:	90 bd       	out	0x20, r25	; 32
+ 83e:	01 c0       	rjmp	.+2      	; 0x842 <UART_Init+0x9c>
+		}
+		else
+		{
+			/* Handling of entering wrong Stop size */
+			au8_DET = E_STOP_SIZE ;
+ 840:	87 e0       	ldi	r24, 0x07	; 7
+		}
+
+		if(CHAR_5B == pstr_UART_cfg -> u8_CharSize)
+ 842:	9c 81       	ldd	r25, Y+4	; 0x04
+ 844:	91 11       	cpse	r25, r1
+ 846:	04 c0       	rjmp	.+8      	; 0x850 <UART_Init+0xaa>
+		{
+			/* Character Size */
+			SET_MASK(UCSRC, CHAR_5B);
+ 848:	90 b5       	in	r25, 0x20	; 32
+ 84a:	90 bd       	out	0x20, r25	; 32
+			CLEAR_BIT(UCSRB, UCSZ2);
+ 84c:	52 98       	cbi	0x0a, 2	; 10
+ 84e:	1d c0       	rjmp	.+58     	; 0x88a <__stack+0x2b>
+		}
+		else if(CHAR_6B == pstr_UART_cfg -> u8_CharSize)
+ 850:	92 30       	cpi	r25, 0x02	; 2
+ 852:	29 f4       	brne	.+10     	; 0x85e <UART_Init+0xb8>
+		{
+			/* Character Size */
+			SET_MASK(UCSRC, CHAR_6B);
+ 854:	90 b5       	in	r25, 0x20	; 32
+ 856:	92 60       	ori	r25, 0x02	; 2
+ 858:	90 bd       	out	0x20, r25	; 32
+			CLEAR_BIT(UCSRB, UCSZ2);
+ 85a:	52 98       	cbi	0x0a, 2	; 10
+ 85c:	16 c0       	rjmp	.+44     	; 0x88a <__stack+0x2b>
+		}
+		else if(CHAR_7B == pstr_UART_cfg -> u8_CharSize)
+ 85e:	94 30       	cpi	r25, 0x04	; 4
+ 860:	29 f4       	brne	.+10     	; 0x86c <__stack+0xd>
+		{
+			/* Character Size */
+			SET_MASK(UCSRC, CHAR_7B);
+ 862:	90 b5       	in	r25, 0x20	; 32
+ 864:	94 60       	ori	r25, 0x04	; 4
+ 866:	90 bd       	out	0x20, r25	; 32
+			CLEAR_BIT(UCSRB, UCSZ2);
+ 868:	52 98       	cbi	0x0a, 2	; 10
+ 86a:	0f c0       	rjmp	.+30     	; 0x88a <__stack+0x2b>
+		}
+		else if(CHAR_8B == pstr_UART_cfg -> u8_CharSize)
+ 86c:	96 30       	cpi	r25, 0x06	; 6
+ 86e:	29 f4       	brne	.+10     	; 0x87a <__stack+0x1b>
+		{
+			/* Character Size */
+			SET_MASK(UCSRC, CHAR_8B);
+ 870:	90 b5       	in	r25, 0x20	; 32
+ 872:	96 60       	ori	r25, 0x06	; 6
+ 874:	90 bd       	out	0x20, r25	; 32
+			CLEAR_BIT(UCSRB, UCSZ2);
+ 876:	52 98       	cbi	0x0a, 2	; 10
+ 878:	08 c0       	rjmp	.+16     	; 0x88a <__stack+0x2b>
+		}
+		else if(CHAR_9B == pstr_UART_cfg -> u8_CharSize)
+ 87a:	97 30       	cpi	r25, 0x07	; 7
+ 87c:	29 f4       	brne	.+10     	; 0x888 <__stack+0x29>
+		{
+			/* Character Size */
+			SET_MASK(UCSRC, CHAR_8B);
+ 87e:	90 b5       	in	r25, 0x20	; 32
+ 880:	96 60       	ori	r25, 0x06	; 6
+ 882:	90 bd       	out	0x20, r25	; 32
+			SET_BIT(UCSRB, UCSZ2);
+ 884:	52 9a       	sbi	0x0a, 2	; 10
+ 886:	01 c0       	rjmp	.+2      	; 0x88a <__stack+0x2b>
+		}
+		else
+		{
+			/* Handling of entering wrong Char size */
+			au8_DET = E_CHAR_SIZE ;
+ 888:	83 e0       	ldi	r24, 0x03	; 3
+		}
+		SET_BIT(UCSRB, RXEN); /* RX enable */
+ 88a:	54 9a       	sbi	0x0a, 4	; 10
+		SET_BIT(UCSRB, TXEN); /* TX enable */
+ 88c:	53 9a       	sbi	0x0a, 3	; 10
+ 88e:	01 c0       	rjmp	.+2      	; 0x892 <__stack+0x33>
+	}
+	else
+	{
+		/* Handling of entering null pointer*/
+		au8_DET = E_PTR_IS_NULL ;
+ 890:	85 e0       	ldi	r24, 0x05	; 5
+	}
+	return au8_DET;
+}
+ 892:	df 91       	pop	r29
+ 894:	cf 91       	pop	r28
+ 896:	08 95       	ret
+
+00000898 <UART_Send_Byte>:
+{
+	/*
+	 *	Development Error Tracer
+	 */
+	uint8_t au8_DET = ERROR_OK ;
+	if(POLLING == u8_UART_InterruptMode)
+ 898:	90 91 73 00 	lds	r25, 0x0073	; 0x800073 <u8_UART_InterruptMode>
+ 89c:	91 11       	cpse	r25, r1
+ 89e:	05 c0       	rjmp	.+10     	; 0x8aa <UART_Send_Byte+0x12>
+	{
+		while(GET_BIT(UCSRA, UDRE) == NULL);
+ 8a0:	5d 9b       	sbis	0x0b, 5	; 11
+ 8a2:	fe cf       	rjmp	.-4      	; 0x8a0 <UART_Send_Byte+0x8>
+		UDR = au8_TXbyatCpy;
+ 8a4:	8c b9       	out	0x0c, r24	; 12
+uint8_t UART_Send_Byte(uint8_t au8_TXbyatCpy)
+{
+	/*
+	 *	Development Error Tracer
+	 */
+	uint8_t au8_DET = ERROR_OK ;
+ 8a6:	80 e0       	ldi	r24, 0x00	; 0
+ 8a8:	08 95       	ret
+	if(POLLING == u8_UART_InterruptMode)
+	{
+		while(GET_BIT(UCSRA, UDRE) == NULL);
+		UDR = au8_TXbyatCpy;
+	}
+	else if(INTERRUPT == u8_UART_InterruptMode)
+ 8aa:	91 30       	cpi	r25, 0x01	; 1
+ 8ac:	19 f4       	brne	.+6      	; 0x8b4 <UART_Send_Byte+0x1c>
+	{
+			UDR = au8_TXbyatCpy;
+ 8ae:	8c b9       	out	0x0c, r24	; 12
+uint8_t UART_Send_Byte(uint8_t au8_TXbyatCpy)
+{
+	/*
+	 *	Development Error Tracer
+	 */
+	uint8_t au8_DET = ERROR_OK ;
+ 8b0:	80 e0       	ldi	r24, 0x00	; 0
+ 8b2:	08 95       	ret
+			UDR = au8_TXbyatCpy;
+	}
+	else
+	{
+		/* Handling of entering wrong Mode */
+		au8_DET = E_INTERRUPT_MODE ;
+ 8b4:	84 e0       	ldi	r24, 0x04	; 4
+	}
+
+	return au8_DET;
+}
+ 8b6:	08 95       	ret
+
+000008b8 <UART_Start_RecieveByte>:
+{
+	/*
+	 *	Development Error Tracer
+	 */
+	uint8_t au8_DET = ERROR_OK ;
+	if(NULL != au8_RXbyatCpy)
+ 8b8:	00 97       	sbiw	r24, 0x00	; 0
+ 8ba:	91 f0       	breq	.+36     	; 0x8e0 <UART_Start_RecieveByte+0x28>
+	{
+		if(POLLING == u8_UART_InterruptMode)
+ 8bc:	20 91 73 00 	lds	r18, 0x0073	; 0x800073 <u8_UART_InterruptMode>
+ 8c0:	21 11       	cpse	r18, r1
+ 8c2:	07 c0       	rjmp	.+14     	; 0x8d2 <UART_Start_RecieveByte+0x1a>
+		{
+			while(GET_BIT(UCSRA, RXC) == NULL);
+ 8c4:	5f 9b       	sbis	0x0b, 7	; 11
+ 8c6:	fe cf       	rjmp	.-4      	; 0x8c4 <UART_Start_RecieveByte+0xc>
+			*au8_RXbyatCpy = UDR;
+ 8c8:	2c b1       	in	r18, 0x0c	; 12
+ 8ca:	fc 01       	movw	r30, r24
+ 8cc:	20 83       	st	Z, r18
+uint8_t UART_Start_RecieveByte(uint8_t * au8_RXbyatCpy)
+{
+	/*
+	 *	Development Error Tracer
+	 */
+	uint8_t au8_DET = ERROR_OK ;
+ 8ce:	80 e0       	ldi	r24, 0x00	; 0
+ 8d0:	08 95       	ret
+		if(POLLING == u8_UART_InterruptMode)
+		{
+			while(GET_BIT(UCSRA, RXC) == NULL);
+			*au8_RXbyatCpy = UDR;
+		}
+		else if(INTERRUPT == u8_UART_InterruptMode)
+ 8d2:	21 30       	cpi	r18, 0x01	; 1
+ 8d4:	39 f4       	brne	.+14     	; 0x8e4 <UART_Start_RecieveByte+0x2c>
+		{
+				*au8_RXbyatCpy = UDR;
+ 8d6:	2c b1       	in	r18, 0x0c	; 12
+ 8d8:	fc 01       	movw	r30, r24
+ 8da:	20 83       	st	Z, r18
+uint8_t UART_Start_RecieveByte(uint8_t * au8_RXbyatCpy)
+{
+	/*
+	 *	Development Error Tracer
+	 */
+	uint8_t au8_DET = ERROR_OK ;
+ 8dc:	80 e0       	ldi	r24, 0x00	; 0
+ 8de:	08 95       	ret
+		}
+	}
+	else
+	{
+		/* Handling of entering null pointer*/
+		au8_DET = E_PTR_IS_NULL ;
+ 8e0:	85 e0       	ldi	r24, 0x05	; 5
+ 8e2:	08 95       	ret
+				*au8_RXbyatCpy = UDR;
+		}
+		else
+		{
+			/* Handling of entering wrong Mode */
+			au8_DET = E_INTERRUPT_MODE ;
+ 8e4:	84 e0       	ldi	r24, 0x04	; 4
+		au8_DET = E_PTR_IS_NULL ;
+	}
+
+	return au8_DET;
+
+}
+ 8e6:	08 95       	ret
+
+000008e8 <Set_Call_Back_UART_TX>:
+
+/* Global UART TX set callback function */
+uint8_t Set_Call_Back_UART_TX(void (*App)(void))
+{
+	uint8_t retval = ERROR_OK;
+	if( App != NULL_PTR )
+ 8e8:	00 97       	sbiw	r24, 0x00	; 0
+ 8ea:	31 f0       	breq	.+12     	; 0x8f8 <Set_Call_Back_UART_TX+0x10>
+	{
+		callBack_tx = App;
+ 8ec:	90 93 aa 00 	sts	0x00AA, r25	; 0x8000aa <callBack_tx+0x1>
+ 8f0:	80 93 a9 00 	sts	0x00A9, r24	; 0x8000a9 <callBack_tx>
+
+
+/* Global UART TX set callback function */
+uint8_t Set_Call_Back_UART_TX(void (*App)(void))
+{
+	uint8_t retval = ERROR_OK;
+ 8f4:	80 e0       	ldi	r24, 0x00	; 0
+ 8f6:	08 95       	ret
+	{
+		callBack_tx = App;
+	}
+	else
+	{
+		retval = E_PTR_IS_NULL ;
+ 8f8:	85 e0       	ldi	r24, 0x05	; 5
+	}
+	return retval;
+}
+ 8fa:	08 95       	ret
+
+000008fc <Set_Call_Back_UART_RX>:
+
+/* Global UART RX set callback function */
+uint8_t Set_Call_Back_UART_RX(void (*App)(void))
+{
+	uint8_t retval = ERROR_OK;
+	if( App != NULL_PTR )
+ 8fc:	00 97       	sbiw	r24, 0x00	; 0
+ 8fe:	31 f0       	breq	.+12     	; 0x90c <Set_Call_Back_UART_RX+0x10>
+	{
+		callBack_rx = App;
+ 900:	90 93 a8 00 	sts	0x00A8, r25	; 0x8000a8 <callBack_rx+0x1>
+ 904:	80 93 a7 00 	sts	0x00A7, r24	; 0x8000a7 <callBack_rx>
+}
+
+/* Global UART RX set callback function */
+uint8_t Set_Call_Back_UART_RX(void (*App)(void))
+{
+	uint8_t retval = ERROR_OK;
+ 908:	80 e0       	ldi	r24, 0x00	; 0
+ 90a:	08 95       	ret
+	{
+		callBack_rx = App;
+	}
+	else
+	{
+		retval = E_PTR_IS_NULL ;
+ 90c:	85 e0       	ldi	r24, 0x05	; 5
+	}
+	return retval;
+}
+ 90e:	08 95       	ret
+
+00000910 <__vector_13>:
+
+
+ ISR(USART_RXC_vect)
+ {
+ 910:	1f 92       	push	r1
+ 912:	0f 92       	push	r0
+ 914:	0f b6       	in	r0, 0x3f	; 63
+ 916:	0f 92       	push	r0
+ 918:	11 24       	eor	r1, r1
+ 91a:	2f 93       	push	r18
+ 91c:	3f 93       	push	r19
+ 91e:	4f 93       	push	r20
+ 920:	5f 93       	push	r21
+ 922:	6f 93       	push	r22
+ 924:	7f 93       	push	r23
+ 926:	8f 93       	push	r24
+ 928:	9f 93       	push	r25
+ 92a:	af 93       	push	r26
+ 92c:	bf 93       	push	r27
+ 92e:	ef 93       	push	r30
+ 930:	ff 93       	push	r31
+ 	if(callBack_rx != NULL_PTR)
+ 932:	e0 91 a7 00 	lds	r30, 0x00A7	; 0x8000a7 <callBack_rx>
+ 936:	f0 91 a8 00 	lds	r31, 0x00A8	; 0x8000a8 <callBack_rx+0x1>
+ 93a:	30 97       	sbiw	r30, 0x00	; 0
+ 93c:	09 f0       	breq	.+2      	; 0x940 <__vector_13+0x30>
+ 	{
+	 	callBack_rx();
+ 93e:	09 95       	icall
+ 	}
+ }
+ 940:	ff 91       	pop	r31
+ 942:	ef 91       	pop	r30
+ 944:	bf 91       	pop	r27
+ 946:	af 91       	pop	r26
+ 948:	9f 91       	pop	r25
+ 94a:	8f 91       	pop	r24
+ 94c:	7f 91       	pop	r23
+ 94e:	6f 91       	pop	r22
+ 950:	5f 91       	pop	r21
+ 952:	4f 91       	pop	r20
+ 954:	3f 91       	pop	r19
+ 956:	2f 91       	pop	r18
+ 958:	0f 90       	pop	r0
+ 95a:	0f be       	out	0x3f, r0	; 63
+ 95c:	0f 90       	pop	r0
+ 95e:	1f 90       	pop	r1
+ 960:	18 95       	reti
+
+00000962 <__vector_15>:
+
+
+ ISR(USART_TXC_vect)
+ {
+ 962:	1f 92       	push	r1
+ 964:	0f 92       	push	r0
+ 966:	0f b6       	in	r0, 0x3f	; 63
+ 968:	0f 92       	push	r0
+ 96a:	11 24       	eor	r1, r1
+ 96c:	2f 93       	push	r18
+ 96e:	3f 93       	push	r19
+ 970:	4f 93       	push	r20
+ 972:	5f 93       	push	r21
+ 974:	6f 93       	push	r22
+ 976:	7f 93       	push	r23
+ 978:	8f 93       	push	r24
+ 97a:	9f 93       	push	r25
+ 97c:	af 93       	push	r26
+ 97e:	bf 93       	push	r27
+ 980:	ef 93       	push	r30
+ 982:	ff 93       	push	r31
+	if(callBack_tx != NULL_PTR)
+ 984:	e0 91 a9 00 	lds	r30, 0x00A9	; 0x8000a9 <callBack_tx>
+ 988:	f0 91 aa 00 	lds	r31, 0x00AA	; 0x8000aa <callBack_tx+0x1>
+ 98c:	30 97       	sbiw	r30, 0x00	; 0
+ 98e:	09 f0       	breq	.+2      	; 0x992 <__vector_15+0x30>
+	{
+		callBack_tx();
+ 990:	09 95       	icall
+	}
+
+ 992:	ff 91       	pop	r31
+ 994:	ef 91       	pop	r30
+ 996:	bf 91       	pop	r27
+ 998:	af 91       	pop	r26
+ 99a:	9f 91       	pop	r25
+ 99c:	8f 91       	pop	r24
+ 99e:	7f 91       	pop	r23
+ 9a0:	6f 91       	pop	r22
+ 9a2:	5f 91       	pop	r21
+ 9a4:	4f 91       	pop	r20
+ 9a6:	3f 91       	pop	r19
+ 9a8:	2f 91       	pop	r18
+ 9aa:	0f 90       	pop	r0
+ 9ac:	0f be       	out	0x3f, r0	; 63
+ 9ae:	0f 90       	pop	r0
+ 9b0:	1f 90       	pop	r1
+ 9b2:	18 95       	reti
+
+000009b4 <_exit>:
+ 9b4:	f8 94       	cli
+
+000009b6 <__stop_program>:
+ 9b6:	ff cf       	rjmp	.-2      	; 0x9b6 <__stop_program>
